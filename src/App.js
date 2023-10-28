@@ -1,21 +1,20 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App m-12">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <p className="text-green-500">
+          Initial Setup && Added TailwindCss
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/br25/React_learn.git"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Github link
         </a>
       </header>
     </div>
