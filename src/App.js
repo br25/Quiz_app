@@ -1,21 +1,17 @@
+// App.js
 import React from 'react';
-import './App.css';
+import Navbar from './components/Navbar';
+import Quiz from './components/Quiz'; // Import the Quiz component
+import logo from './images/quiz_icon.png';
 
 function App() {
   return (
-    <div className="App m-12">
+    <div className="App">
+      <Navbar />
       <header className="App-header">
-        <p className="text-green-500">
-          Initial Setup && Added TailwindCss
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/br25/React_learn.git"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Github link
-        </a>
+        <img src={logo} className="App-logo w-48" alt="logo" />
+        <p className="text-red-500">Your Quiz App Content Goes Here</p>
+        <Quiz /> {/* Include the Quiz component here */}
       </header>
     </div>
   );
