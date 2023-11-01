@@ -1,19 +1,26 @@
-// App.js
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Quiz from './components/Quiz'; // Import the Quiz component
-import logo from './images/quiz_icon.png';
+import Home from './components/Home';
+import About from './components/About';
+import Service from './components/Service';
+import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <header className="App-header">
-        <img src={logo} className="App-logo w-48" alt="logo" />
-        <p className="text-red-500">Your Quiz App Content Goes Here</p>
-        <Quiz /> {/* Include the Quiz component here */}
-      </header>
-    </div>
+    <Router>
+      <div className="bg-cover bg-no-repeat bg-center bg-fixed h-screen" style={{ backgroundImage: `url("./images/background-5035258_1280.jpg")` }}>
+        <header className="App-header">
+          <Navbar />
+          <Switch>
+            <Route exact path="/"><Home /></Route>
+            <Route path="/about"><About /></Route>
+            <Route path="/service"><Service /></Route>
+            <Route path="/contact"><Contact /></Route>
+          </Switch>
+        </header>
+      </div>
+    </Router>
   );
 }
 
