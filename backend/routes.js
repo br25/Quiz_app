@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Get Questions
 router.get('/list', (req, res) => {
-  db.all('SELECT question, options FROM questions', (err, rows) => {
+  db.all('SELECT question, options, correctAnswer FROM questions', (err, rows) => {
     if(err) {
       return res.status(500).json({ error: err.message})
     }
@@ -13,11 +13,19 @@ router.get('/list', (req, res) => {
     const formattedQuestions = rows.map((row) => ({
       question: row.question,
       options: JSON.parse(row.options),
+      // correctAnswer: row.correctAnswer,
+      correctAnswer: encodeAnswer(row.correctAnswer),
     }));
 
     res.status(200).json(formattedQuestions);
   });
 });
+
+// Define a simple encoding function (you should use a more secure method)
+function encodeAnswer(answer) {
+  // This is just an example; you should use a more secure encoding/encryption method
+  return Buffer.from(answer).toString('base64');
+}
 
 // Create qustions
 router.post('/create', (req, res) => {

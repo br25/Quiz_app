@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -6,9 +7,11 @@ function Home() {
       <div className="container mx-auto p-4 text-blue-200 text-center">
         <h1 className="text-8xl font-semibold">Quiz App</h1>
         <p className='m-4 text-red-400 text-xl'>Click here to start the exam</p>
-        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-          Start Exam
-        </button>
+        <Link to="/quiz">
+          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Start Exam
+          </button>
+        </Link>
       </div>
     </div>
   );

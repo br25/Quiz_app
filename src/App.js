@@ -5,6 +5,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Service from './components/Service';
 import Contact from './components/Contact';
+import Quiz from './components/Quiz';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/about"><About /></Route>
             <Route path="/service"><Service /></Route>
             <Route path="/contact"><Contact /></Route>
+            <Route path="/quiz" component={Quiz} />
           </Switch>
         </header>
       </div>
