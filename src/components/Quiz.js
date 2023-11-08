@@ -56,11 +56,12 @@ function Quiz() {
   };
 
   const getGrade = (percentage) => {
-    if (percentage >= 90) return 'A+';
-    if (percentage >= 80) return 'A';
-    if (percentage >= 70) return 'B';
-    if (percentage >= 60) return 'C';
-    return 'D';
+    if (percentage >= 95) return 'A+';
+    if (percentage >= 85) return 'A';
+    if (percentage >= 75) return 'B';
+    if (percentage >= 65) return 'C';
+    if (percentage >= 60) return 'D';
+    return 'F';
   };
 
   if (questions.length === 0) {
@@ -74,15 +75,15 @@ function Quiz() {
   }
 
   return (
-    <div className="bg-gray-200 flex items-center justify-center h-screen">
-      <div className="bg-white p-8 rounded shadow-lg max-w-md">
+    <div className="bg-gray-200 flex items-center justify-center" style={{ height: 'calc(100vh - 4.5rem)' }}>
+      <div className="bg-white p-24 rounded shadow-lg max-w-md">
         {showResult ? (
           <div className="text-center">
-            <h2 className="text-2xl font-semibold text-green-600">Your Quiz Result</h2>
-            <p className="text-lg text-gray-700 mt-4">Score: {calculateScore().score}/{questions.length}</p>
-            <p className="text-lg text-gray-700">Percentage: {calculateScore().percentage.toFixed(2)}%</p>
-            <p className="text-lg text-gray-700">Grade: {getGrade(calculateScore().percentage)}</p>
-            <p className="text-lg text-gray-700">Pass: {calculateScore().pass ? 'Yes' : 'No'}</p>
+            <h2 className="text-3xl font-semibold text-green-600">Your Quiz Result</h2>
+            <p className="text-xl font-bold text-gray-700 mt-4">Score: {calculateScore().score}/{questions.length}</p>
+            <p className="text-xl font-bold text-gray-700">Percentage: {calculateScore().percentage.toFixed(2)}%</p>
+            <p className="text-xl font-bold text-gray-700">Grade: {getGrade(calculateScore().percentage)}</p>
+            <p className="text-xl font-bold text-gray-700">Pass: {calculateScore().pass ? 'Yes' : 'No'}</p>
           </div>
         ) : (
           <div className="question-container">
