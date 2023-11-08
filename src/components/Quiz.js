@@ -41,13 +41,26 @@ function Quiz() {
   };
 
   const calculateScore = () => {
-    let score = 0;
-    for (let i = 0; i < questions.length; i++) {
-      if (userAnswers[i] === questions[i].correctAnswer) {
-        score++;
+    const numCorrect = userAnswers.reduce((count, userAnswer, index) => {
+      if (userAnswer === questions[index].correctAnswer) {
+        return count + 1;
       }
-    }
-    return score;
+      return count;
+    }, 0);
+
+    const score = numCorrect;
+    const percentage = (score / questions.length) * 100;
+    const pass = percentage >= 60;
+
+    return { score, percentage, pass };
+  };
+
+  const getGrade = (percentage) => {
+    if (percentage >= 90) return 'A+';
+    if (percentage >= 80) return 'A';
+    if (percentage >= 70) return 'B';
+    if (percentage >= 60) return 'C';
+    return 'D';
   };
 
   if (questions.length === 0) {
@@ -66,7 +79,10 @@ function Quiz() {
         {showResult ? (
           <div className="text-center">
             <h2 className="text-2xl font-semibold text-green-600">Your Quiz Result</h2>
-            <p className="text-lg text-gray-700 mt-4">Score: {calculateScore()} out of {questions.length}</p>
+            <p className="text-lg text-gray-700 mt-4">Score: {calculateScore().score}/{questions.length}</p>
+            <p className="text-lg text-gray-700">Percentage: {calculateScore().percentage.toFixed(2)}%</p>
+            <p className="text-lg text-gray-700">Grade: {getGrade(calculateScore().percentage)}</p>
+            <p className="text-lg text-gray-700">Pass: {calculateScore().pass ? 'Yes' : 'No'}</p>
           </div>
         ) : (
           <div className="question-container">

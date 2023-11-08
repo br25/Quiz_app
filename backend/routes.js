@@ -27,36 +27,38 @@ function encodeAnswer(answer) {
   return Buffer.from(answer).toString('base64');
 }
 
-// Create qustions
-router.post('/create', (req, res) => {
-  const { question, options, correctAnswer } = req.body;
+// // Create single qustion
+// router.post('/create', (req, res) => {
+//   const { question, options, correctAnswer } = req.body;
 
-  // Validate the request body
-  if (!question || !options || !correctAnswer) {
-    return res.status(400).json({ error: "Missing request field" });
-  }
-  if (!Array.isArray(options) || options.length < 2) {
-    return res.status(400).json({ error: "Invalid options" });
-  }
+//   // Validate the request body
+//   if (!question || !options || !correctAnswer) {
+//     return res.status(400).json({ error: "Missing request field" });
+//   }
+//   if (!Array.isArray(options) || options.length < 2) {
+//     return res.status(400).json({ error: "Invalid options" });
+//   }
 
-  // Insert the new question into the database
-  db.run(
-    'INSERT INTO questions (question, options, correctAnswer) VALUES (?, ?, ?)',
-    [question, JSON.stringify(options), correctAnswer],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      // Return a JSON response containing the newly created question
-      res.status(201).json({
-        id: this.lastID,
-        question,
-        options,
-        correctAnswer,
-      });
-    }
-  );
-});
+//   // Insert the new question into the database
+//   db.run(
+//     'INSERT INTO questions (question, options, correctAnswer) VALUES (?, ?, ?)',
+//     [question, JSON.stringify(options), correctAnswer],
+//     function (err) {
+//       if (err) {
+//         return res.status(500).json({ error: err.message });
+//       }
+
+
+//       // Return a JSON response containing the newly created question
+//       res.status(201).json({
+//         id: this.lastID,
+//         question,
+//         options,
+//         correctAnswer,
+//       });
+//     }
+//   );
+// });
 
 // Update a question
 router.put('/update/:id', (req, res) => {
